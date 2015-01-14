@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block body_block %}
+<form method="post" role="form" action="." xmlns="http://www.w3.org/1999/html">
+        {% csrf_token %}
+
+        <h2 class="form-signin-heading">Profiles</h2>
+
+        <table class="table">
+            <thead><th>Username</th><th>E-mail</th><th>URL</th><th>View</th></thead>
+            <tbody>
+                {% for each in profiles %}
+                    <tr><td>{{ each.user.username }}</td><td>{{ each.user.email }}</td><td><a href="{{ each.website }}">{{ each.website }}</a></td><td><a href="{% url 'profile' each.user.id %}">View</a></td></tr>
+                {% endfor %}
+            </tbody>
+        </table
+</form>
+{% endblock %}
